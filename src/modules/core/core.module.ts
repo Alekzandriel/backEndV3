@@ -1,14 +1,15 @@
 import { Global, Module } from '@nestjs/common';
 
 import {
-  /*CareersController,*/
+  
   CataloguesController,
-  /*CurriculaController,*/
-  /*InformationStudentsController,*/
- /* InstitutionsController,
+  CurriculaController,
+  InformationStudentsController,
+  InstitutionsController,
   StudentsController,
-  SubjectsController,*/
-  /*InformationTeachersController,*/
+  SubjectsController,
+  InformationTeachersController,
+  CareersController,
 
   CandidatoController,
   CandidatoListaController,
@@ -24,14 +25,14 @@ import {
   VotoController,
 } from '@core/controllers';
 import {
-  /*CareersService,*/
+  CareersService,
   CataloguesService,
-  /*CurriculaService,*/
-  /*InformationStudentsService,*/
-  /*InstitutionsService,*/
- /* StudentsService,
-  SubjectsService,*/
-  /*InformationTeachersService,*/
+  CurriculaService,
+  InformationStudentsService,
+  InstitutionsService,
+  StudentsService,
+  SubjectsService,
+  InformationTeachersService,
 
   CandidatoListaService,
   CargoService,
@@ -54,16 +55,16 @@ import { coreProviders } from '@core/providers';
 @Module({
   imports: [DatabaseModule],
   controllers: [
-    /*CareersController,*/
+    CareersController,
     CataloguesController,
-    /*CurriculaController,*/
-/*
+    CurriculaController,
+
     InformationStudentsController,
     InformationTeachersController,
-    */
-   /* InstitutionsController,
+    
+    InstitutionsController,
     StudentsController,
-    SubjectsController,*/
+    SubjectsController,
     
     CandidatoListaController,
     CandidatoController,
@@ -81,18 +82,18 @@ import { coreProviders } from '@core/providers';
   ],
   providers: [
     ...coreProviders,
-    /*CareersService,*/
+    CareersService,
     CataloguesService,
-    /*CurriculaService,*/
-/*
+    CurriculaService,
+
     InformationStudentsService,
     InformationTeachersService,
     InstitutionsService,
-    */
-   /*
+    
+   
     StudentsService,
     SubjectsService,
-*/
+
     CandidatoListaService,
     CandidatoService,
     CargoService,
@@ -108,18 +109,18 @@ import { coreProviders } from '@core/providers';
   ],
   exports: [
     ...coreProviders,
-   /* CareersService,*/
+    CareersService,
     CataloguesService,
-    /*CurriculaService,*/
-/*
+    CurriculaService,
+
     InformationStudentsService,
     InformationTeachersService,
     InstitutionsService,
-    */
-   /*
+    
+  
     StudentsService,
     SubjectsService,
-*/
+
     CandidatoListaService,
     CandidatoService,
     CargoService,

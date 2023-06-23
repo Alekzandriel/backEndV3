@@ -1,4 +1,4 @@
-/*import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository, FindOptionsWhere, ILike, LessThan } from 'typeorm';
 import { PaginationDto} from '@core/dto';
 import { CurriculumEntity } from '@core/entities';
@@ -12,6 +12,7 @@ import { RepositoryEnum } from '@shared/enums';
 
 @Injectable()
 export class CurriculaService {
+  [x: string]: any;
   constructor(
     @Inject(RepositoryEnum.CURRICULUM_REPOSITORY)
     private curriculumRepository: Repository<CurriculumEntity>,
@@ -33,7 +34,7 @@ export class CurriculaService {
       data: curriculumCreated,
     };
   }
-
+*/
   async findAll(
     params: any,
   ): Promise<ServiceResponseHttpModel> {
@@ -171,4 +172,3 @@ export class CurriculaService {
     };
   }
 }
-*/

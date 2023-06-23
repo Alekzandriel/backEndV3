@@ -26,7 +26,7 @@ import { ResponseHttpModel } from '@shared/models';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @ApiOperation({ summary: 'Login' })
+  @ApiOperation({ summary: 'Ingresar' })
   @PublicRoute()
   @Post('login')
   @HttpCode(HttpStatus.CREATED)
@@ -35,12 +35,12 @@ export class AuthController {
 
     return {
       data: serviceResponse.data,
-      message: 'Correct Access',
-      title: 'Welcome',
+      message: 'Acceso Correcto',
+      title: 'Bienvenido',
     };
   }
 
-  @ApiOperation({ summary: 'Change Password' })
+  @ApiOperation({ summary: 'Cambiar Contraseña' })
   @Auth()
   @Put(':id/change-password')
   @HttpCode(HttpStatus.CREATED)
@@ -52,12 +52,12 @@ export class AuthController {
 
     return {
       data: serviceResponse.data,
-      message: 'The password was changed',
-      title: 'Password Changed',
+      message: 'Su contraseña fue cambiada',
+      title: 'Contraseña cambiada',
     };
   }
 
-  @ApiOperation({ summary: 'Find Profile' })
+  @ApiOperation({ summary: 'Buscar perfil' })
   @Auth()
   @Get('profile')
   @HttpCode(HttpStatus.OK)
@@ -66,12 +66,12 @@ export class AuthController {
 
     return {
       data: serviceResponse.data,
-      message: `profile`,
-      title: `Success`,
+      message: `Perfil fue encontrado`,
+      title: `Perfil encontrado`,
     };
   }
 
-  @ApiOperation({ summary: 'Find User Information' })
+  @ApiOperation({ summary: 'Buscar Información Usuario' })
   @Auth()
   @Get('user-information')
   @HttpCode(HttpStatus.CREATED)
@@ -82,12 +82,12 @@ export class AuthController {
 
     return {
       data: serviceResponse.data,
-      message: 'The user information was updated',
-      title: 'User Information Updated',
+      message: 'Información usuario fue encontrada',
+      title: 'Información usuario encontrada',
     };
   }
 
-  @ApiOperation({ summary: 'Update Profile' })
+  @ApiOperation({ summary: 'Actualizar Perfil' })
   @Auth()
   @Put('profile')
   @HttpCode(HttpStatus.CREATED)
@@ -102,12 +102,12 @@ export class AuthController {
 
     return {
       data: serviceResponse.data,
-      message: 'The profile was updated',
-      title: 'Profile Updated',
+      message: 'Perfil fue actualizado',
+      title: 'Perfil actualizado',
     };
   }
 
-  @ApiOperation({ summary: 'Update User Information' })
+  @ApiOperation({ summary: 'Actualizar Información Usuario' })
   @Auth()
   @Put('user-information')
   @HttpCode(HttpStatus.CREATED)
@@ -122,12 +122,12 @@ export class AuthController {
 
     return {
       data: serviceResponse.data,
-      message: 'The user information was updated',
-      title: 'User Information Updated',
+      message: 'Información Usuario fue actualizada',
+      title: 'Información Usuario Actualizada',
     };
   }
 
-  @ApiOperation({ summary: 'Refresh Token' })
+  @ApiOperation({ summary: 'Ficha de Actualización' })
   @Auth()
   @Get('refresh-token')
   @HttpCode(HttpStatus.CREATED)
@@ -136,8 +136,8 @@ export class AuthController {
 
     return {
       data: serviceResponse.data,
-      message: 'Correct Access',
-      title: 'Refresh Token',
+      message: 'Acceso Correcto',
+      title: 'Ficha Actualización',
     };
   }
 }

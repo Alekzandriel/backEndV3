@@ -1,4 +1,4 @@
-/*
+
 import {
   Body,
   Controller,
@@ -18,7 +18,7 @@ import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { InformationStudentEntity } from '@core/entities';
 import { InformationStudentsService } from '@core/services';
 import { ResponseHttpModel } from '@shared/models';
-import { AnyAaaaRecord } from 'dns';
+
 
 @ApiTags('Information Students')
 @Controller('information-students')
@@ -123,4 +123,3 @@ export class InformationStudentsController {
     };
   }
 }
-*/

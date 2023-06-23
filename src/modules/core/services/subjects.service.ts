@@ -1,4 +1,4 @@
-/*import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository, FindOptionsWhere, ILike, LessThan } from 'typeorm';
 import { SubjectEntity } from '@core/entities';
 import { PaginationDto } from '@core/dto';
@@ -18,10 +18,10 @@ export class SubjectsService {
   async create(payload: any): Promise<ServiceResponseHttpModel> {
     const newSubject = this.subjectRepository.create(payload);
 
+    /*
     newSubject.academicPeriod = await this.catalogueService.findOne(
       payload.academicPeriod.id,
     );
-
     newSubject.state = await this.catalogueService.findOne(payload.state.id);
 
     newSubject.type = await this.catalogueService.findOne(payload.type.id);
@@ -29,7 +29,7 @@ export class SubjectsService {
     newSubject.curriculum = await this.curriculumService.findOne(
       payload.curriculum.id,
     );
-
+*/
     const subjectCreated = await this.subjectRepository.save(newSubject);
 
     return { data: subjectCreated };
@@ -163,4 +163,3 @@ export class SubjectsService {
     };
   }
 }
-*/

@@ -24,7 +24,7 @@ import { Auth } from '@auth/decorators';
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @ApiOperation({ summary: 'Create One' })
+  @ApiOperation({ summary: 'Crear un usuario' })
   @Auth()
   @Post()
   @HttpCode(HttpStatus.CREATED)
@@ -33,12 +33,12 @@ export class UsersController {
 
     return {
       data: serviceResponse.data,
-      message: 'User created',
+      message: 'Usuario creado',
       title: 'Created',
     };
   }
 
-  @ApiOperation({ summary: 'Catalogue' })
+  @ApiOperation({ summary: 'Buscar Usuario' })
   @Get('catalogue')
   @HttpCode(HttpStatus.OK)
   async catalogue(): Promise<ResponseHttpModel> {

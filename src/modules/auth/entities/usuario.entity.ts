@@ -109,18 +109,16 @@ import {
       periodoUltimoVoto: string;
     
       @Column({
-        name: 'estado_voto',
-        type: 'boolean',       
-        default: () => 'BOOLEAN',
+        name: 'estado_voto',  
+        type: 'varchar',  
         comment: 'Estado del voto del usuario Ej. No Voto = False',
       })
-      estadoVoto: boolean; 
+      estadoVoto: string; 
     
       @Column({
         name: 'estado_usuario',
-        type: 'boolean',       
-        default: () => 'BOOLEAN',
+        type: 'varchar',       
         comment: 'Estado del usuario. Ej. Activo = True',
       })
-      estadoUsuario: boolean; 
+      estadoUsuario: string; 
   }

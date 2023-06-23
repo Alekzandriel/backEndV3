@@ -1,4 +1,4 @@
-/*
+
 import {
   Body,
   Controller,
@@ -115,4 +115,3 @@ export class CurriculaController {
     };
   }
 }
-*/

@@ -34,6 +34,8 @@ export class InstitutionEntity {
   })
   deleteAt: Date;
 
+
+  
   @OneToOne(() => CatalogueEntity)
   @JoinColumn({ name: 'address_id' })
   address: CatalogueEntity;

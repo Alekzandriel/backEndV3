@@ -1,4 +1,4 @@
-/*
+
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository, FindOptionsWhere, ILike, LessThan } from 'typeorm';
 import { PaginationDto} from '@core/dto';
@@ -57,7 +57,7 @@ export class InformationTeachersService {
 
     return { data: informationTeacherCreated };
   }
-
+*/
   async findAll(
     params?: any,
   ): Promise<ServiceResponseHttpModel> {
@@ -252,4 +252,3 @@ export class InformationTeachersService {
   }
 }
 
-*/

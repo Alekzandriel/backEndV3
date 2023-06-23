@@ -24,7 +24,7 @@ import { MenusService } from '@auth/services';
 export class MenusController {
   constructor(private menusService: MenusService) {}
 
-  @ApiOperation({ summary: 'Create One' })
+  @ApiOperation({ summary: 'Crear Uno' })
   @Auth()
   @Post()
   @HttpCode(HttpStatus.CREATED)
@@ -33,12 +33,12 @@ export class MenusController {
 
     return {
       data: serviceResponse.data,
-      message: 'Menu created',
-      title: 'Created',
+      message: 'Menú fue creado',
+      title: 'Menú Creado',
     };
   }
 
-  @ApiOperation({ summary: 'Catalogue' })
+  @ApiOperation({ summary: 'Catálogo' })
   @Get('catalogue')
   @HttpCode(HttpStatus.OK)
   async catalogue(): Promise<ResponseHttpModel> {
@@ -47,12 +47,12 @@ export class MenusController {
     return {
       data: serviceResponse.data,
       pagination: serviceResponse.pagination,
-      message: `catalogue`,
-      title: `Catalogue`,
+      message: `Catálogo`,
+      title: `Catálogo`,
     };
   }
 
-  @ApiOperation({ summary: 'Menus for sidebar' })
+  @ApiOperation({ summary: 'Menús barra lateral' })
   @Get('sidebar')
   @HttpCode(HttpStatus.OK)
   async getMenusForSidebar(): Promise<ResponseHttpModel> {
@@ -61,12 +61,12 @@ export class MenusController {
     return {
       data: serviceResponse.data,
       pagination: serviceResponse.pagination,
-      message: `catalogue`,
-      title: `Catalogue`,
+      message: `Menú barra lateral`,
+      title: `Menú barra lateral`,
     };
   }
 
-  @ApiOperation({ summary: 'Find All' })
+  @ApiOperation({ summary: 'Buscar Todos' })
   @Get()
   @HttpCode(HttpStatus.OK)
   async findAll(@Query() params: FilterMenuDto): Promise<ResponseHttpModel> {
@@ -75,12 +75,12 @@ export class MenusController {
     return {
       data: serviceResponse.data,
       pagination: serviceResponse.pagination,
-      message: `index`,
-      title: 'Success',
+      message: `Fueron Encontrados`,
+      title: 'Encontrados',
     };
   }
 
-  @ApiOperation({ summary: 'Find One' })
+  @ApiOperation({ summary: 'Buscar Uno' })
   @Auth()
   @Get(':id')
   @HttpCode(HttpStatus.OK)
@@ -91,12 +91,12 @@ export class MenusController {
 
     return {
       data: serviceResponse.data,
-      message: `show ${id}`,
-      title: `Success`,
+      message: `Encontrado ${id}`,
+      title: `Encontrado`,
     };
   }
 
-  @ApiOperation({ summary: 'Update One' })
+  @ApiOperation({ summary: 'Actualizar un menú' })
   @Auth()
   @Put(':id')
   @HttpCode(HttpStatus.CREATED)
@@ -108,12 +108,12 @@ export class MenusController {
 
     return {
       data: serviceResponse.data,
-      message: `Menu updated ${id}`,
-      title: `Updated`,
+      message: `Menú fue actualizado${id}`,
+      title: `Menú actualizado`,
     };
   }
 
-  @ApiOperation({ summary: 'Remove One' })
+  @ApiOperation({ summary: 'Eliminar Uno' })
   @Auth()
   @Delete(':id')
   @HttpCode(HttpStatus.CREATED)
@@ -124,12 +124,12 @@ export class MenusController {
 
     return {
       data: serviceResponse.data,
-      message: `Menu deleted ${id}`,
-      title: `Deleted`,
+      message: `Menú fue eliminado ${id}`,
+      title: `Menú eliminado`,
     };
   }
 
-  @ApiOperation({ summary: 'Remove All' })
+  @ApiOperation({ summary: 'Eliminar Todo' })
   @Auth()
   @Patch('remove-all')
   @HttpCode(HttpStatus.CREATED)
@@ -138,8 +138,8 @@ export class MenusController {
 
     return {
       data: serviceResponse.data,
-      message: `Menus deleted`,
-      title: `Deleted`,
+      message: `Menus fueron eliminados`,
+      title: `Menus eliminados`,
     };
   }
 }

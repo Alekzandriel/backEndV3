@@ -13,6 +13,7 @@ import {
   MenusService,
   RolesService,
   UsersService,
+  RolService,
 } from '@auth/services';
 import { JwtStrategy } from '@auth/strategies';
 import { authProviders } from '@auth/providers';
@@ -49,7 +50,8 @@ import { MenusController } from './controllers/menus.controller';
     RolesService,
     UsersService,
     MenusService,
+    RolService,
   ],
-  exports: [UsersService, RolesService, MenusService],
+  exports: [UsersService, RolesService, MenusService,RolService],
 })
 export class AuthModule {}

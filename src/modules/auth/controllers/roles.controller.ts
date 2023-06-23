@@ -24,7 +24,7 @@ import { RolesService } from '@auth/services';
 export class RolesController {
   constructor(private rolesService: RolesService) {}
 
-  @ApiOperation({ summary: 'Create One' })
+  @ApiOperation({ summary: 'Crear un Rol' })
   @Auth()
   @Post()
   @HttpCode(HttpStatus.CREATED)
@@ -33,8 +33,8 @@ export class RolesController {
 
     return {
       data: serviceResponse.data,
-      message: 'Role created',
-      title: 'Created',
+      message: 'Rol fue creado',
+      title: 'Rol Creado',
     };
   }
 

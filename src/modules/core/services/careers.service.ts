@@ -1,4 +1,4 @@
-/*import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository, FindOptionsWhere, ILike } from 'typeorm';
 import { PaginationDto,} from '@core/dto';
 import { CareerEntity } from '@core/entities';
@@ -8,6 +8,9 @@ import { RepositoryEnum } from '@shared/enums';
 
 @Injectable()
 export class CareersService {
+  findAll(params: any) {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     @Inject(RepositoryEnum.CAREER_REPOSITORY)
     private careerRepository: Repository<CareerEntity>,
@@ -49,12 +52,12 @@ export class CareersService {
 
     return { data: careerCreated };
   }
-  
   async findAll(params?: any): Promise<ServiceResponseHttpModel> {
     //Pagination & Filter by search
     if (params?.limit > 0 && params?.page >= 0) {
       return await this.paginateAndFilter(params);
     }
+    */ 
 
     //Filter by other field
 
@@ -146,4 +149,3 @@ export class CareersService {
     };
   }
 }
-*/

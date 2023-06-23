@@ -1,4 +1,4 @@
-/*
+
 import {
   Body,
   Controller,
@@ -22,7 +22,7 @@ import { InformationTeachersService } from '@core/services';
 @Controller('information-teachers')
 export class InformationTeachersController {
   constructor(private informationTeachersService: InformationTeachersService) {}
-
+/*
   @ApiOperation({ summary: 'Crear InformacionDocente' })
   @Post()
   @HttpCode(HttpStatus.CREATED)
@@ -39,7 +39,7 @@ export class InformationTeachersController {
       title: 'InformacionDocente creado',
     };
   }
-
+*/
   @ApiOperation({ summary: 'Buscar InformacionDocentes' })
   @Get()
   @HttpCode(HttpStatus.OK)
@@ -123,4 +123,4 @@ export class InformationTeachersController {
     };
   }
 }
-*/
+

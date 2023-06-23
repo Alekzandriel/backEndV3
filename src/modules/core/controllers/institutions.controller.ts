@@ -22,11 +22,11 @@ import { ResponseHttpModel } from '@shared/models';
 @Controller('institutions')
 export class InstitutionsController {
   constructor(private instituteService: InstitutionsService) {}
-/*
+
   @ApiOperation({ summary: 'Create Institution' })
   @Post()
   @HttpCode(HttpStatus.CREATED)
-
+/*
   async create(
     @Body() payload: any,
   ): Promise<ResponseHttpModel> {

@@ -1,4 +1,4 @@
-/*import {
+import {
   Body,
   Controller,
   Delete,
@@ -111,4 +111,3 @@ export class SubjectsController {
     };
   }
 }
-*/

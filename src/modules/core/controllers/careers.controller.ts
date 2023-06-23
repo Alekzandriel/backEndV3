@@ -1,4 +1,4 @@
-/*
+
 import {
   Body,
   Controller,
@@ -14,7 +14,6 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
-import { CreateCareerDto, UpdateCareerDto, FilterCareerDto } from '@core/dto';
 import { CareersService } from '@core/services';
 import { CareerEntity } from '@core/entities';
 import { ResponseHttpModel } from '@shared/models';
@@ -41,7 +40,7 @@ export class CareersController {
   @ApiOperation({ summary: 'Create Career' })
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  async create(@Body() payload: CreateCareerDto): Promise<ResponseHttpModel> {
+  async create(@Body() payload: any): Promise<ResponseHttpModel> {
     const serviceResponse = await this.careersService.create(payload);
 
     return {
@@ -50,11 +49,11 @@ export class CareersController {
       title: 'Career Created',
     };
   }
-
+/*
   @ApiOperation({ summary: 'Find All Careers' })
   @Get()
   @HttpCode(HttpStatus.OK)
-  async findAll(@Query() params: FilterCareerDto): Promise<ResponseHttpModel> {
+  async findAll(@Query() params: any): Promise<ResponseHttpModel> {
     const serviceResponse = await this.careersService.findAll(params);
 
     return {
@@ -64,7 +63,7 @@ export class CareersController {
       title: 'Success',
     };
   }
-
+*/
   @ApiOperation({ summary: 'Find Career' })
   @Get(':id')
   @HttpCode(HttpStatus.OK)
@@ -85,7 +84,7 @@ export class CareersController {
   @HttpCode(HttpStatus.CREATED)
   async update(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() payload: UpdateCareerDto,
+    @Body() payload: any,
   ): Promise<ResponseHttpModel> {
     const serviceResponse = await this.careersService.update(id, payload);
     return {
@@ -122,4 +121,3 @@ export class CareersController {
     };
   }
 }
-*/

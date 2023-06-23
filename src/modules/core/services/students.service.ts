@@ -1,4 +1,4 @@
-/*import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PaginationDto} from '@core/dto';
 import { Repository, FindOptionsWhere, ILike, In } from 'typeorm';
@@ -103,4 +103,3 @@ export class StudentsService {
     return { pagination: { limit, totalItems: data[1] }, data: data[0] };
   }
 }
-*/
