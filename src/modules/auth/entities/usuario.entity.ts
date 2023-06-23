@@ -8,6 +8,7 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
   } from 'typeorm';
+import { TipoUsuarioEntity } from './tipo-usuario.entity';
 
   @Entity('usuarios', {schema: 'auth'})
   export class UsuarioEntity {
@@ -43,6 +44,10 @@ import {
       @JoinColumn({ name: 'state_id' })
       state: CatalogueEntity;
     */
+      @ManyToOne(()=>TipoUsuarioEntity)
+      @JoinColumn({name:'idtipousuario'})  
+      tiposUsuario:TipoUsuarioEntity;
+
       @Column('varchar', {
         name: 'cedula',
         length: 10,

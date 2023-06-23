@@ -8,6 +8,7 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
+import { ListaEntity } from './lista.entity';
 
 @Entity('votos', { schema: 'core' })
 export class VotoEntity {
@@ -43,6 +44,11 @@ export class VotoEntity {
       @JoinColumn({ name: 'state_id' })
       state: CatalogueEntity;
     */
+   
+      @ManyToOne(() => ListaEntity)
+      @JoinColumn({ name: 'idlista' })
+      listas: ListaEntity;
+
     @Column({
         name: 'hora_voto',
         type: 'varchar',
@@ -60,5 +66,6 @@ export class VotoEntity {
     })
 
     claseVoto: string;
+  lista: any;
     
 }

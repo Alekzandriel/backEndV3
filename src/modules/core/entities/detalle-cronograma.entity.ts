@@ -8,6 +8,7 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
+import { CronogramaEntity } from './cronograma.entity';
 
 @Entity('detalleCronogramas', { schema: 'core' })
 export class DetalleCronogramaEntity {
@@ -44,6 +45,10 @@ export class DetalleCronogramaEntity {
       state: CatalogueEntity;
     */
 
+      @ManyToOne(() => CronogramaEntity)
+      @JoinColumn({ name: 'idcronograma' })
+      cronogramas: CronogramaEntity[];
+
     @Column({
         name: 'fecha_inicio_tarea_cronograma',
         type: 'varchar',
@@ -79,4 +84,5 @@ export class DetalleCronogramaEntity {
         comment: 'Estado del detalle del cronograma',
       })
       estadoDetalleCronograma: string; 
+  cronograma: any;
 }

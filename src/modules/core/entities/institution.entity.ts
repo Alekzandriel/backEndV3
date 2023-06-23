@@ -1,4 +1,4 @@
-import { CatalogueEntity } from '@core/entities';
+import { CareerEntity, CarreraEntity, CatalogueEntity } from '@core/entities';
 import {
   Column,
   CreateDateColumn,
@@ -6,6 +6,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -34,8 +35,10 @@ export class InstitutionEntity {
   })
   deleteAt: Date;
 
+  @OneToMany(() => CareerEntity, (career: CareerEntity) => career.institution)
+  @JoinColumn ({name:'careers'})
+  careers: CareerEntity[];
 
-  
   @OneToOne(() => CatalogueEntity)
   @JoinColumn({ name: 'address_id' })
   address: CatalogueEntity;

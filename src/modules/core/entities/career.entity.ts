@@ -5,6 +5,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -38,6 +39,10 @@ export class CareerEntity {
     comment: 'Fecha de eliminacion de la carrera',
   })
   deletedAt: Date;
+
+  @ManyToOne(()=>InstitutionEntity)
+  @JoinColumn({name:'instituion_id'})  
+  intitution:InstitutionEntity;
 
   @ManyToOne(() => InstitutionEntity, {
     nullable: true,

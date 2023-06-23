@@ -5,9 +5,11 @@ import {
     Entity,
     JoinColumn,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
   } from 'typeorm';
+import { DetalleCronogramaEntity } from './detalle-cronograma.entity';
 
   @Entity('cronogramas', {schema: 'core'})
 export class CronogramaEntity {
@@ -43,6 +45,10 @@ export class CronogramaEntity {
       @JoinColumn({ name: 'state_id' })
       state: CatalogueEntity;
     */
+      @OneToMany(() => DetalleCronogramaEntity, (detalleCronograma:DetalleCronogramaEntity)=>detalleCronograma.cronograma)
+      @JoinColumn({ name: 'iddetallecronograma' })
+      cronogramas: DetalleCronogramaEntity;
+
       @Column('varchar', {
         name: 'periodo_lectivo',
         length: 10,

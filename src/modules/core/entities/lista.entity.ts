@@ -7,7 +7,10 @@ import {
     ManyToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
+    OneToMany
   } from 'typeorm';
+import { PeriodoLectivoEntity } from './periodo-lectivo.entity';
+import { VotoEntity } from './voto.entity';
 
   @Entity('listas', {schema: 'core'})
   export class ListaEntity {
@@ -43,6 +46,16 @@ import {
       @JoinColumn({ name: 'state_id' })
       state: CatalogueEntity;
     */
+
+      @ManyToOne(() => PeriodoLectivoEntity ,(periodoLectivo:PeriodoLectivoEntity) =>periodoLectivo.lista )
+      @JoinColumn({ name: 'idperiodolectivo' })
+      periodosLectivos: PeriodoLectivoEntity;
+      
+      @OneToMany(() => VotoEntity ,(voto:VotoEntity) =>voto.lista)
+      @JoinColumn({ name: 'idvoto' })
+      voto: VotoEntity[];
+
+
       @Column('varchar', {
         name: 'nombre_lista',
         length: 10,
@@ -94,6 +107,8 @@ import {
         comment: 'Estado de la lista',
       })
       estadoLista: string; 
+
+      
   }
 
-  
+

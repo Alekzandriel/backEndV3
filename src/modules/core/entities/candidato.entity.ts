@@ -5,9 +5,11 @@ import {
     Entity,
     JoinColumn,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
   } from 'typeorm';
+import { CandidatoListaEntity } from './candidato-lista.entity';
 
   @Entity('candidatos', {schema: 'core'})
   export class CandidatoEntity {
@@ -38,11 +40,12 @@ import {
       @OneToOne(() => CatalogueEntity)
       @JoinColumn({ name: 'address_id' })
       address: CatalogueEntity;
-    
-      @ManyToOne(() => CatalogueEntity)
-      @JoinColumn({ name: 'state_id' })
-      state: CatalogueEntity;
     */
+
+      @OneToMany(() => CandidatoListaEntity, (candidatoLista:CandidatoListaEntity)=>candidatoLista.candidatos)
+      @JoinColumn({ name: 'idcandidatolista' })
+      candidatosLista: CandidatoListaEntity;
+  
     
       @Column('varchar', {
         name: 'dignidad_candidato',
@@ -58,4 +61,5 @@ import {
         comment: 'Enlace al documento de matricula',
       })
       matriculaCandidato: string; 
+    candidato: any;
   }

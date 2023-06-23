@@ -8,7 +8,9 @@ import {
     ManyToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
+    OneToMany
 } from 'typeorm';
+import { ListaEntity } from './lista.entity';
 
 @Entity('periodosLectivos', { schema: 'core' })
 export class PeriodoLectivoEntity {
@@ -44,6 +46,11 @@ export class PeriodoLectivoEntity {
       @JoinColumn({ name: 'state_id' })
       state: CatalogueEntity;
     */
+   
+      @ManyToOne(() => ListaEntity)
+      @JoinColumn({ name: 'idlista' })
+      listas: ListaEntity [];
+      
     @Column('varchar', {
         name: 'nombre_periodo_lectivo',
         length: 50,
@@ -67,4 +74,5 @@ export class PeriodoLectivoEntity {
         comment: 'Fecha de finalizacion del periodo lectivo',
     })
     fechaFinalizacionPeriodoLectivo: string;
+  lista: any;
 }

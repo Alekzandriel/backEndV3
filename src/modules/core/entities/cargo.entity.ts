@@ -5,9 +5,11 @@ import {
     Entity,
     JoinColumn,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
+import { CandidatoListaEntity } from './candidato-lista.entity';
 
 @Entity('cargos', { schema: 'core' })
 export class CargoEntity {
@@ -43,6 +45,10 @@ export class CargoEntity {
       @JoinColumn({ name: 'state_id' })
       state: CatalogueEntity;
     */
+
+      @OneToMany(() => CandidatoListaEntity, (candidatoLista:CandidatoListaEntity)=>candidatoLista.cargos)
+      @JoinColumn({ name: 'idcandidatolista' })
+      candidatosLista: CandidatoListaEntity;
 
     @Column('varchar', {
         name: 'nombre_cargo',
