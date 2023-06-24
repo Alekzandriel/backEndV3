@@ -5,11 +5,14 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { CandidatoEntity } from './candidato.entity';
 import { CargoEntity } from './cargo.entity';
+import { ListaEntity } from './lista.entity';
+import { UsuarioEntity } from '@auth/entities';
 
 @Entity('candidatoListas', { schema: 'core' })
 export class CandidatoListaEntity {
@@ -40,14 +43,21 @@ export class CandidatoListaEntity {
     @JoinColumn({ name: 'address_id' })
     address: CatalogueEntity;
   */
-  @ManyToOne(() => CandidatoEntity)
-  @JoinColumn({ name: 'idcandidato' })
-  candidatos: CandidatoEntity[];
-  
+
+  @OneToMany(() => UsuarioEntity, (usuario: UsuarioEntity) => usuario.candidatosLista)
+  @JoinColumn({ name: 'cedulausuario' })
+  usuarios: UsuarioEntity[];
+
+  @ManyToOne(() => ListaEntity)
+  @JoinColumn({ name: 'idlista' })
+  lista: ListaEntity;
+ 
   @ManyToOne(() => CargoEntity)
   @JoinColumn({ name: 'idcargo' })
-  cargos: CargoEntity[];
+  cargos: CargoEntity;
   
-
+  @ManyToOne(() => CandidatoListaEntity)
+  @JoinColumn({ name: 'idcandidatolista' })
+  candidatos: CandidatoListaEntity;
 
 }

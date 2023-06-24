@@ -5,9 +5,11 @@ import {
     Entity,
     JoinColumn,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
+import { ListaEntity } from './lista.entity';
 
 @Entity('tipolistas', { schema: 'core' })
 export class TipoListaEntity {
@@ -43,6 +45,11 @@ export class TipoListaEntity {
       @JoinColumn({ name: 'state_id' })
       state: CatalogueEntity;
     */
+
+      @OneToMany(() => ListaEntity, (lista: ListaEntity) => lista.tipoLista)
+      @JoinColumn({ name: 'idlista' })
+      lista: ListaEntity[];
+      
     @Column('varchar', {
         name: 'nombre_tipo_lista',
         length: 50,
@@ -51,5 +58,6 @@ export class TipoListaEntity {
         comment: 'Nombre del tipo de la lista',
     })
     nombreTipoLista: string;
+
 
 }

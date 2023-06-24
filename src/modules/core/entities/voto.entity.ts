@@ -45,9 +45,10 @@ export class VotoEntity {
       state: CatalogueEntity;
     */
    
+ 
       @ManyToOne(() => ListaEntity)
       @JoinColumn({ name: 'idlista' })
-      listas: ListaEntity;
+      lista: ListaEntity;
 
     @Column({
         name: 'hora_voto',
@@ -66,6 +67,6 @@ export class VotoEntity {
     })
 
     claseVoto: string;
-  lista: any;
+
     
 }

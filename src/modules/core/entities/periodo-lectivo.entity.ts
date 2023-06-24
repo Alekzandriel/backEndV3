@@ -50,6 +50,14 @@ export class PeriodoLectivoEntity {
       @ManyToOne(() => ListaEntity)
       @JoinColumn({ name: 'idlista' })
       listas: ListaEntity [];
+
+      @OneToMany(() => ListaEntity, (lista: ListaEntity) => lista.periodoLectivo)
+      @JoinColumn({ name: 'idlista' })
+      lista: ListaEntity[];
+   
+      @OneToMany(() => PeriodoLectivoEntity, (periodoLectivo: PeriodoLectivoEntity) => periodoLectivo.cronograma)
+      @JoinColumn({ name: 'idperiodolectivo' })
+      periodolectivo: PeriodoLectivoEntity[];
       
     @Column('varchar', {
         name: 'nombre_periodo_lectivo',
@@ -74,5 +82,5 @@ export class PeriodoLectivoEntity {
         comment: 'Fecha de finalizacion del periodo lectivo',
     })
     fechaFinalizacionPeriodoLectivo: string;
-  lista: any;
+    cronograma: any;
 }

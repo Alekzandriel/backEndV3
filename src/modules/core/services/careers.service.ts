@@ -36,7 +36,7 @@ export class CareersService {
   async create(payload: any): Promise<ServiceResponseHttpModel> {
     const newCareer = this.careerRepository.create(payload);
 
-    // newCareer.institution = await this.institutionService.findOne(
+     //newCareer.institution = await this.institutionService.findOne(
     //   payload.institution.id,
     // );
 /*
@@ -63,7 +63,7 @@ export class CareersService {
 
     //All
     const data = await this.careerRepository.findAndCount({
-      relations: ['institution', 'modality', 'state', 'type'],
+      relations: ['institution', 'modality', 'state', 'type','institution'],
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };

@@ -45,9 +45,9 @@ export class TipoUsuarioEntity {
     @JoinColumn({ name: 'state_id' })
     state: CatalogueEntity;
   */
-  @OneToMany (() => UsuarioEntity, (usuario: UsuarioEntity) => usuario.tipoUsuario)
-  @JoinColumn ({ name: 'cedulausuario' })
-  usuarios: UsuarioEntity[];
+    @OneToMany(() => UsuarioEntity, (usuario: UsuarioEntity) => usuario.tipoUsuario)
+    @JoinColumn({ name: 'cedulausuario' })
+    usuario: UsuarioEntity[];
 
 
   @Column('varchar', {
@@ -58,4 +58,5 @@ export class TipoUsuarioEntity {
     comment: 'Nombre del tipo de usuario. Ej. Docente',
   })
   nombreTipoUsuario: string;
+  
 }

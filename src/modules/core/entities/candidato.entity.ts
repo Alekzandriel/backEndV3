@@ -10,6 +10,7 @@ import {
     UpdateDateColumn,
   } from 'typeorm';
 import { CandidatoListaEntity } from './candidato-lista.entity';
+import { CargoEntity } from './cargo.entity';
 
   @Entity('candidatos', {schema: 'core'})
   export class CandidatoEntity {
@@ -46,7 +47,6 @@ import { CandidatoListaEntity } from './candidato-lista.entity';
       @JoinColumn({ name: 'idcandidatolista' })
       candidatosLista: CandidatoListaEntity;
   
-    
       @Column('varchar', {
         name: 'dignidad_candidato',
         nullable: true,
