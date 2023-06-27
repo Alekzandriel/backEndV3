@@ -3,6 +3,7 @@ import {
   CandidatoEntity,
   CandidatoListaEntity,
   CareerEntity,
+  CargoEntity,
   CarreraEntity,
   CatalogueEntity,
   ConfiguracionEntity,
@@ -77,12 +78,7 @@ export const coreProviders = [
       dataSource.getRepository(CandidatoListaEntity),
     inject: [DataSourceEnum.PG_DATA_SOURCE],
   },
-  {
-    provide: RepositoryEnum.CANDIDATO_REPOSITORY,
-    useFactory: (dataSource: DataSource) =>
-      dataSource.getRepository(CandidatoEntity),
-    inject: [DataSourceEnum.PG_DATA_SOURCE],
-  },
+
   {
     provide: RepositoryEnum.CARRERA_REPOSITORY,
     useFactory: (dataSource: DataSource) =>
@@ -135,6 +131,18 @@ export const coreProviders = [
     provide: RepositoryEnum.VOTO_REPOSITORY,
     useFactory: (dataSource: DataSource) =>
       dataSource.getRepository(VotoEntity),
+    inject: [DataSourceEnum.PG_DATA_SOURCE],
+  },
+  {
+    provide: RepositoryEnum.CARGO_REPOSITORY,
+    useFactory: (dataSource: DataSource) =>
+      dataSource.getRepository(CargoEntity),
+    inject: [DataSourceEnum.PG_DATA_SOURCE],
+  },
+  {
+    provide: RepositoryEnum.CANDIDATO_REPOSITORY,
+    useFactory: (dataSource: DataSource) =>
+      dataSource.getRepository(CandidatoEntity),
     inject: [DataSourceEnum.PG_DATA_SOURCE],
   },
 ];

@@ -134,4 +134,5 @@ export class UsuarioEntity {
     comment: 'Estado del usuario. Ej. Activo = True',
   })
   estadoUsuario: string;
+  carrera: any;
 }

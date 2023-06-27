@@ -51,7 +51,7 @@ export class CarreraService {
 
     //All
     const data = await this.carreraRepository.findAndCount({
-      relations: [''],
+      relations: ['usuario'],//
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };
@@ -59,14 +59,14 @@ export class CarreraService {
 
   async findOne(id: string): Promise<any> {
     const carrera = await this.carreraRepository.findOne({
-      relations: [''],
+      relations: ['usuarios'],
       where: {
         id,
       },
     });
 
     if (!carrera) {
-      throw new NotFoundException(`El voto con el id:  ${id} no se encontro`);
+      throw new NotFoundException(`La carrera con el id:  ${id} no se encontro`);
     }
     return { data: carrera };
   }
@@ -120,7 +120,7 @@ export class CarreraService {
     }
 
     const response = await this.carreraRepository.findAndCount({
-      relations: [''],
+      relations: ['usuarios'],
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),

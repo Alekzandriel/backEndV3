@@ -16,7 +16,7 @@ export class tipoListasService {
 
   async catalogue(): Promise<ServiceResponseHttpModel> {
     const response = await this.tipoListaRepository.findAndCount({
-      relations: [],
+      relations: ['lista'],
       take: 1000,
     });
 
@@ -51,7 +51,7 @@ export class tipoListasService {
 
     //All
     const data = await this.tipoListaRepository.findAndCount({
-      relations: [],
+      relations: ['lista'],
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };
@@ -59,7 +59,7 @@ export class tipoListasService {
 
   async findOne(id: string): Promise<any> {
     const tipoLista = await this.tipoListaRepository.findOne({
-      relations: [],
+      relations: ['lista'],
       where: {
         id,
       },
@@ -77,7 +77,7 @@ export class tipoListasService {
   ): Promise<ServiceResponseHttpModel> {
     const voto = await this.tipoListaRepository.findOneBy({ id });
     if (!voto) {
-      throw new NotFoundException(`La carrera con id:  ${id} no se encontro`);
+      throw new NotFoundException(`el tipoLista con EL id:  ${id} no se encontro`);
     }
     this.tipoListaRepository.merge(voto, payload);
     const tipoListaActualizado = await this.tipoListaRepository.save(voto);
@@ -88,7 +88,7 @@ export class tipoListasService {
     const tipoLista = await this.tipoListaRepository.findOneBy({ id });
 
     if (!tipoLista) {
-      throw new NotFoundException(`El tipoLista con el :  ${id} no se encontro`);
+      throw new NotFoundException(`El tipoLista con el ID:  ${id} no se encontro`);
     }
 
     const tipoListaELiminado = await this.tipoListaRepository.softRemove(tipoLista);
@@ -119,7 +119,7 @@ export class tipoListasService {
       }
 
     const response = await this.tipoListaRepository.findAndCount({
-      relations: [''],
+      relations: ['lista'],
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),

@@ -66,7 +66,7 @@ export class ConfiguracionService {
     });
 
     if (!configuracion) {
-      throw new NotFoundException(`El voto con el id:  ${id} no se encontro`);
+      throw new NotFoundException(`La configuración con el id:  ${id} no se encontro`);
     }
     return { data: configuracion };
   }
@@ -77,7 +77,7 @@ export class ConfiguracionService {
   ): Promise<ServiceResponseHttpModel> {
     const configuracion = await this.configuracionRepository.findOneBy({ id });
     if (!configuracion) {
-      throw new NotFoundException(`La carrera con id:  ${id} no se encontro`);
+      throw new NotFoundException(`La configuración con id:  ${id} no se encontro`);
     }
     this.configuracionRepository.merge(configuracion, payload);
     const configuracionActualizada = await this.configuracionRepository.save(configuracion);
@@ -88,7 +88,7 @@ export class ConfiguracionService {
     const configuracion = await this.configuracionRepository.findOneBy({ id });
 
     if (!configuracion) {
-      throw new NotFoundException(`El voto con el :  ${id} no se encontro`);
+      throw new NotFoundException(`La configuración con el :  ${id} no se encontro`);
     }
 
     const configuracionEliminada = await this.configuracionRepository.softRemove(configuracion);
@@ -122,7 +122,7 @@ export class ConfiguracionService {
     }
 
     const response = await this.configuracionRepository.findAndCount({
-      relations: ['institution', 'modality', 'state', 'type'],
+      relations: [],
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),

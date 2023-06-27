@@ -9,6 +9,7 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 import { CronogramaEntity } from './cronograma.entity';
+import { PeriodoLectivoEntity } from './periodo-lectivo.entity';
 
 @Entity('detalleCronogramas', { schema: 'core' })
 export class DetalleCronogramaEntity {
@@ -45,9 +46,13 @@ export class DetalleCronogramaEntity {
       state: CatalogueEntity;
     */
 
-      @ManyToOne(() => CronogramaEntity)
-      @JoinColumn({ name: 'idcronograma' })
-      cronogramas: CronogramaEntity[];
+    @ManyToOne(() => CronogramaEntity)
+    @JoinColumn({ name: 'idcronograma' })
+    cronogramas: CronogramaEntity[];
+
+    @ManyToOne(() => PeriodoLectivoEntity)
+    @JoinColumn({ name: 'idperiodolectivo' })
+    periodoLectivo: PeriodoLectivoEntity[];
 
     @Column({
         name: 'fecha_inicio_tarea_cronograma',
@@ -80,9 +85,9 @@ export class DetalleCronogramaEntity {
 
     @Column({
         name: 'estado_detalle_cronograma',
-        type: 'varchar',       
+        type: 'varchar',
         comment: 'Estado del detalle del cronograma',
-      })
-      estadoDetalleCronograma: string; 
-  cronograma: any;
+    })
+    estadoDetalleCronograma: string;
+    cronograma: any;
 }

@@ -16,7 +16,7 @@ export class CandidatoListaService {
 
   async catalogue(): Promise<ServiceResponseHttpModel> {
     const response = await this.candidatoListaRepository.findAndCount({
-      relations: ['institution', 'modality', 'state', 'type'],
+      relations: ['usuarios', 'lista', 'cargo', 'candidatoListas'  ],
       take: 1000,
     });
 
@@ -30,7 +30,7 @@ export class CandidatoListaService {
   }
 
   async create(payload: any): Promise<ServiceResponseHttpModel> {
-    const nuevoVoto = this.candidatoListaRepository.create(payload);
+    const nuevoCandidatoLista = this.candidatoListaRepository.create(payload);
 
     // newCareer.institution = await this.institutionService.findOne(
     //   payload.institution.id,
@@ -38,9 +38,9 @@ export class CandidatoListaService {
 
   
 
-    const creacionVoto = await this.candidatoListaRepository.save(nuevoVoto);
+    const creacionCandidatoLista = await this.candidatoListaRepository.save(nuevoCandidatoLista);
 
-    return { data: creacionVoto };
+    return { data: creacionCandidatoLista };
   }
 
   async findAll(params?: any): Promise<ServiceResponseHttpModel> {
@@ -53,54 +53,54 @@ export class CandidatoListaService {
 
     //All
     const data = await this.candidatoListaRepository.findAndCount({
-      relations: ['institution', 'modality', 'state', 'type'],
+      relations: ['usuarios', 'lista', 'cargo', 'candidatoListas'],
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };
   }
 
   async findOne(id: string): Promise<any> {
-    const voto = await this.candidatoListaRepository.findOne({
-      relations: ['institution', 'modality', 'state', 'type'],
+    const candidatoLista = await this.candidatoListaRepository.findOne({
+      relations: ['usuarios', 'lista', 'cargo', 'candidatoListas' ],
       where: {
         id,
       },
     });
 
-    if (!voto) {
-      throw new NotFoundException(`El voto con el id:  ${id} no se encontro`);
+    if (!candidatoLista) {
+      throw new NotFoundException(`El candidato de lista con el id:  ${id} no se encontro`);
     }
-    return { data: voto };
+    return { data: candidatoLista };
   }
 
   async update(
     id: string,
     payload: any,
   ): Promise<ServiceResponseHttpModel> {
-    const voto = await this.candidatoListaRepository.findOneBy({ id });
-    if (!voto) {
-      throw new NotFoundException(`La carrera con id:  ${id} no se encontro`);
+    const candidatoLista = await this.candidatoListaRepository.findOneBy({ id });
+    if (!candidatoLista) {
+      throw new NotFoundException(`el candidato de la lista con id:  ${id} no se encontro`);
     }
-    this.candidatoListaRepository.merge(voto, payload);
-    const votoActualizado = await this.candidatoListaRepository.save(voto);
+    this.candidatoListaRepository.merge(candidatoLista, payload);
+    const votoActualizado = await this.candidatoListaRepository.save(candidatoLista);
     return { data: votoActualizado };
   }
 
   async remove(id: string): Promise<ServiceResponseHttpModel> {
-    const voto = await this.candidatoListaRepository.findOneBy({ id });
+    const candidatoLista = await this.candidatoListaRepository.findOneBy({ id });
 
-    if (!voto) {
-      throw new NotFoundException(`El voto con el :  ${id} no se encontro`);
+    if (!candidatoLista) {
+      throw new NotFoundException(`El candidatoLista con el :  ${id} no se encontro`);
     }
 
-    const votoELiminado = await this.candidatoListaRepository.softRemove(voto);
+    const candidatoListaELiminado = await this.candidatoListaRepository.softRemove(candidatoLista);
 
-    return { data: votoELiminado };
+    return { data: candidatoListaELiminado };
   }
 
   async removeAll(payload: CandidatoListaEntity[]): Promise<ServiceResponseHttpModel> {
-    const votosEliminados = await this.candidatoListaRepository.softRemove(payload);
-    return { data: votosEliminados};
+    const candidatosListaEliminados = await this.candidatoListaRepository.softRemove(payload);
+    return { data: candidatosListaEliminados};
   }
 
   private async paginateAndFilter(
@@ -121,7 +121,7 @@ export class CandidatoListaService {
     }
 
     const response = await this.candidatoListaRepository.findAndCount({
-      relations: ['institution', 'modality', 'state', 'type'],
+      relations: ['usuarios', 'lista', 'cargo', 'candidatoListas' ],
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),

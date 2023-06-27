@@ -10,7 +10,6 @@ import {
     UpdateDateColumn,
   } from 'typeorm';
 import { CandidatoListaEntity } from './candidato-lista.entity';
-import { CargoEntity } from './cargo.entity';
 
   @Entity('candidatos', {schema: 'core'})
   export class CandidatoEntity {
@@ -61,5 +60,5 @@ import { CargoEntity } from './cargo.entity';
         comment: 'Enlace al documento de matricula',
       })
       matriculaCandidato: string; 
-    candidato: any;
+    
   }

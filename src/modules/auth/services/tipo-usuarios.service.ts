@@ -16,7 +16,7 @@ export class TipoUsuariosService {
 
   async catalogue(): Promise<ServiceResponseHttpModel> {
     const response = await this.tipoUsuarioRepository.findAndCount({
-      relations: [''],
+      relations: ['usuario'],
       take: 1000,
     });
 
@@ -51,7 +51,7 @@ export class TipoUsuariosService {
 
     //All
     const data = await this.tipoUsuarioRepository.findAndCount({
-      relations: [''],
+      relations: ['usuario'],
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };
@@ -59,7 +59,7 @@ export class TipoUsuariosService {
 
   async findOne(id: string): Promise<any> {
     const tipoUsuario = await this.tipoUsuarioRepository.findOne({
-      relations: [''],
+      relations: ['usuario'],
       where: {
         id,
       },
@@ -120,7 +120,7 @@ export class TipoUsuariosService {
     }
 
     const response = await this.tipoUsuarioRepository.findAndCount({
-      relations: [''],
+      relations: ['usuario'],
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),

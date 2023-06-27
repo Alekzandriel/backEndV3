@@ -3,7 +3,7 @@ import { Repository, FindOptionsWhere, ILike } from 'typeorm';
 import { PaginationDto} from '@core/dto';
 import { ServiceResponseHttpModel } from '@shared/models';
 import { RepositoryEnum } from '@shared/enums';
-import { DetalleCronogramaEntity } from '../entities/detalle-cronograma.entity';
+import { DetalleCronogramaEntity } from '../entities/detalle-cronograma.entity'
 
 @Injectable()
 export class DetalleCronogramaService {
@@ -16,7 +16,7 @@ export class DetalleCronogramaService {
 
   async catalogue(): Promise<ServiceResponseHttpModel> {
     const response = await this.detalleCronogramaRepository.findAndCount({
-      relations: [''],
+      relations: ['cronogramas', 'periodoLectivo'],
       take: 1000,
     });
 
@@ -59,7 +59,7 @@ export class DetalleCronogramaService {
 
     //All
     const data = await this.detalleCronogramaRepository.findAndCount({
-      relations: [''],
+      relations: ['cronogramas','periodoLectivo'],
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };
@@ -67,14 +67,14 @@ export class DetalleCronogramaService {
 
   async findOne(id: string): Promise<any> {
     const detalleCronograma = await this.detalleCronogramaRepository.findOne({
-      relations: [''],
+      relations: ['cronogramas','periodoLectivo'],
       where: {
         id,
       },
     });
 
     if (!detalleCronograma) {
-      throw new NotFoundException(`El detalle cronograma con el id:  ${id} no se encontro`);
+      throw new NotFoundException(`El detalle cronogramas con el id:  ${id} no se encontro`);
     }
     return { data: detalleCronograma };
   }
@@ -85,7 +85,7 @@ export class DetalleCronogramaService {
   ): Promise<ServiceResponseHttpModel> {
     const detalleCronograma = await this.detalleCronogramaRepository.findOneBy({ id });
     if (!detalleCronograma) {
-      throw new NotFoundException(`El detalle cronograma con id:  ${id} no se encontro`);
+      throw new NotFoundException(`El detalle cronogramas con id:  ${id} no se encontro`);
     }
     this.detalleCronogramaRepository.merge(detalleCronograma, payload);
     const detalleCronogramaActualizado = await this.detalleCronogramaRepository.save(detalleCronograma);
@@ -96,7 +96,7 @@ export class DetalleCronogramaService {
     const detalleCronograma = await this.detalleCronogramaRepository.findOneBy({ id });
 
     if (!detalleCronograma) {
-      throw new NotFoundException(`El detalle cronograma con el :  ${id} no se encontro`);
+      throw new NotFoundException(`El detalle cronogramas con el :  ${id} no se encontro`);
     }
 
     const detalleCronogramaELiminado = await this.detalleCronogramaRepository.softRemove(detalleCronograma);
@@ -131,7 +131,7 @@ export class DetalleCronogramaService {
     }
 
     const response = await this.detalleCronogramaRepository.findAndCount({
-      relations: [''],
+      relations: ['cronogramas','periodoLectivo'],
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),

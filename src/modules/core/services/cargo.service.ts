@@ -8,7 +8,7 @@ import { CargoEntity } from '../entities/cargo.entity';
 @Injectable()
 export class CargoService {
   constructor(
-    @Inject(RepositoryEnum.CANDIDATO_REPOSITORY)
+    @Inject(RepositoryEnum.CARGO_REPOSITORY)
     private cargoRepository: Repository<CargoEntity>,
     /*private institutionService: InstitutionsService,
     private cataloguesService: CataloguesService*/
@@ -16,7 +16,7 @@ export class CargoService {
 
   async catalogue(): Promise<ServiceResponseHttpModel> {
     const response = await this.cargoRepository.findAndCount({
-      relations: [''],
+      relations: ['candidatoslista'],
       take: 1000,
     });
 
@@ -53,7 +53,7 @@ export class CargoService {
 
     //All
     const data = await this.cargoRepository.findAndCount({
-      relations: [''],
+      relations: ['candidatosLista'],
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };
@@ -61,7 +61,7 @@ export class CargoService {
 
   async findOne(id: string): Promise<any> {
     const cargo = await this.cargoRepository.findOne({
-      relations: [''],
+      relations: ['candidatosLista'],
       where: {
         id,
       },
@@ -77,12 +77,12 @@ export class CargoService {
     id: string,
     payload: any,
   ): Promise<ServiceResponseHttpModel> {
-    const voto = await this.cargoRepository.findOneBy({ id });
-    if (!voto) {
-      throw new NotFoundException(`el cargo con id:  ${id} no se encontro`);
+    const cargo = await this.cargoRepository.findOneBy({ id });
+    if (!cargo) {
+      throw new NotFoundException(`El cargo con id:  ${id} no se encontro`);
     }
-    this.cargoRepository.merge(voto, payload);
-    const cargoActualizado = await this.cargoRepository.save(voto);
+    this.cargoRepository.merge(cargo, payload);
+    const cargoActualizado = await this.cargoRepository.save(cargo);
     return { data: cargoActualizado };
   }
 
@@ -90,7 +90,7 @@ export class CargoService {
     const cargo = await this.cargoRepository.findOneBy({ id });
 
     if (!cargo) {
-      throw new NotFoundException(`El voto con el :  ${id} no se encontro`);
+      throw new NotFoundException(`El cargo con el :  ${id} no se encontro`);
     }
 
     const cargoELiminado = await this.cargoRepository.softRemove(cargo);
@@ -121,7 +121,7 @@ export class CargoService {
     }
 
     const response = await this.cargoRepository.findAndCount({
-      relations: ['institution', 'modality', 'state', 'type'],
+      relations: ['candidatosLista'],
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),

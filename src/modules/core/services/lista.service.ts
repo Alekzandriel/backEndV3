@@ -16,7 +16,7 @@ export class ListaService {
 
   async catalogue(): Promise<ServiceResponseHttpModel> {
     const response = await this.listaRepository.findAndCount({
-      relations: [''],
+      relations: ['candidatosLista', 'tipoLista', 'votos', 'periodoLectivo'],//
       take: 1000,
     });
 
@@ -59,7 +59,7 @@ export class ListaService {
 
     //All
     const data = await this.listaRepository.findAndCount({
-      relations: [''],
+      relations: ['candidatosLista', 'tipoLista', 'votos', 'periodoLectivo'],
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };
@@ -67,7 +67,7 @@ export class ListaService {
 
   async findOne(id: string): Promise<any> {
     const lista = await this.listaRepository.findOne({
-      relations: [''],
+      relations: ['candidatosLista','periodoLectivo','tipoLista','votos'],
       where: {
         id,
       },
@@ -133,7 +133,7 @@ export class ListaService {
     }
 
     const response = await this.listaRepository.findAndCount({
-      relations: [''],
+      relations: ['candidatosLista','periodoLectivo','tipoLista','votos'],//
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),

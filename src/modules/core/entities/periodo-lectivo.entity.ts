@@ -11,6 +11,7 @@ import {
     OneToMany
 } from 'typeorm';
 import { ListaEntity } from './lista.entity';
+import { DetalleCronogramaEntity } from './detalle-cronograma.entity';
 
 @Entity('periodosLectivos', { schema: 'core' })
 export class PeriodoLectivoEntity {
@@ -47,17 +48,14 @@ export class PeriodoLectivoEntity {
       state: CatalogueEntity;
     */
    
-      @ManyToOne(() => ListaEntity)
-      @JoinColumn({ name: 'idlista' })
-      listas: ListaEntity [];
 
       @OneToMany(() => ListaEntity, (lista: ListaEntity) => lista.periodoLectivo)
       @JoinColumn({ name: 'idlista' })
       lista: ListaEntity[];
    
-      @OneToMany(() => PeriodoLectivoEntity, (periodoLectivo: PeriodoLectivoEntity) => periodoLectivo.cronograma)
-      @JoinColumn({ name: 'idperiodolectivo' })
-      periodolectivo: PeriodoLectivoEntity[];
+      @OneToMany(() => DetalleCronogramaEntity, (detalleCronograma: DetalleCronogramaEntity) => detalleCronograma.periodoLectivo)
+      @JoinColumn({ name: 'iddetalleCronograma' })
+      detalleCronograma: DetalleCronogramaEntity[];
       
     @Column('varchar', {
         name: 'nombre_periodo_lectivo',

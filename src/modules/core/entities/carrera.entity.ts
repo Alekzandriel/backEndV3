@@ -1,3 +1,4 @@
+import { UsuarioEntity } from '@auth/entities';
 import { boolean } from 'joi';
 import {
     Column,
@@ -6,6 +7,7 @@ import {
     Entity,
     JoinColumn,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
   } from 'typeorm';
@@ -44,6 +46,11 @@ import {
       @JoinColumn({ name: 'state_id' })
       state: CatalogueEntity;
     */
+
+      @OneToMany(() => UsuarioEntity, (usuario: UsuarioEntity) => usuario.carrera)
+      @JoinColumn({ name: 'cedulausuario' })
+      usuarios: UsuarioEntity[];
+    
     
       @Column('varchar', {
         name: 'nombre_carrera',

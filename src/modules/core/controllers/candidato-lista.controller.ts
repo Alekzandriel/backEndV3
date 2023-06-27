@@ -13,17 +13,17 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import {  CandidatoListaEntity } from '@core/entities';
+import { CandidatoListaEntity } from '@core/entities';
 
 import { ResponseHttpModel } from '@shared/models';
 import { CandidatoListaService } from '../services/candidato-lista.service';
 
-@ApiTags('CandidatoLista')
-@Controller('candidatoLista')
+@ApiTags('CandidatosLista')
+@Controller('candidatosLista')
 export class CandidatoListaController {
   constructor(private candidatoListaService: CandidatoListaService) {}
 
-  @ApiOperation({ summary: 'Crear Cronograma' })
+  @ApiOperation({ summary: 'Crear Candidato Lista' })
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(
@@ -32,12 +32,12 @@ export class CandidatoListaController {
     const serviceResponse = await this.candidatoListaService.create(payload);
     return {
       data: serviceResponse.data,
-      message: `El cronograma fue creado`,
+      message: `Candidato Lista fue creado`,
       title: 'Candidato Lista Creado',
     };
   }
 
-  @ApiOperation({ summary: 'Buscar todos los cronograma' })
+  @ApiOperation({ summary: 'Buscar Candidato Listas' })
   @Get()
   @HttpCode(HttpStatus.OK)
   async findAll(
@@ -47,12 +47,12 @@ export class CandidatoListaController {
     return {
       data: serviceResponse.data,
       pagination: serviceResponse.pagination,
-      message: `Cronogramas fueron encontrado`,
-      title: 'Cronogramas encontrados',
+      message: `Candidato Listas fueron encontrados`,
+      title: 'Candidato Listas encontrados',
     };
   }
 
-  @ApiOperation({ summary: 'Buscar cronograma' })
+  @ApiOperation({ summary: 'Buscar Candidato Lista' })
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   async findOne(
@@ -61,12 +61,12 @@ export class CandidatoListaController {
     const serviceResponse = await this.candidatoListaService.findOne(id);
     return {
       data: serviceResponse.data,
-      message: 'Cronograma fue encontrado',
-      title: `Cronograma encontrado`,
+      message: 'Candidato Lista fue encontrado',
+      title: `Candidato Lista encontrado`,
     };
   }
 
-  @ApiOperation({ summary: 'Actualizar Cronograma' })
+  @ApiOperation({ summary: 'Actualizar Candidato Lista' })
   @Put(':id')
   @HttpCode(HttpStatus.CREATED)
   async update(
@@ -76,12 +76,12 @@ export class CandidatoListaController {
     const serviceResponse = await this.candidatoListaService.update(id, payload);
     return {
       data: serviceResponse.data,
-      message: 'Cronograma fue actualizado',
-      title: `Institution Updated`,
+      message: 'Candidato Lista fue actualizado',
+      title: `Candidato Lista actualizado`,
     };
   }
 
-  @ApiOperation({ summary: 'Eliminar Cronograma' })
+  @ApiOperation({ summary: 'Eliminar Candidato Lista' })
   @Delete(':id')
   @HttpCode(HttpStatus.CREATED)
   async remove(
@@ -90,12 +90,12 @@ export class CandidatoListaController {
     const serviceResponse = await this.candidatoListaService.remove(id);
     return {
       data: serviceResponse.data,
-      message: 'Cronograma fue eliminado',
-      title: 'Cronograma Eliminado',
+      message: 'Candidato Lista fue eliminado',
+      title: 'Candidato Lista eliminado',
     };
   }
 
-  @ApiOperation({ summary: 'Eliminar todos los cronogramas' })
+  @ApiOperation({ summary: 'Eliminar todos los Candidato Listas' })
   @Patch('remove-all')
   @HttpCode(HttpStatus.CREATED)
   async removeAll(
@@ -105,8 +105,8 @@ export class CandidatoListaController {
 
     return {
       data: serviceResponse.data,
-      message: 'Cronogramas fueron eliminados',
-      title: 'Cronogramas Eliminados',
+      message: 'Candidato Listas fueron eliminados',
+      title: 'Candidato Listas eliminados',
     };
   }
 }

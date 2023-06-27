@@ -57,7 +57,7 @@ export class CareersService {
     if (params?.limit > 0 && params?.page >= 0) {
       return await this.paginateAndFilter(params);
     }
-    */ 
+    */
 
     //Filter by other field
 

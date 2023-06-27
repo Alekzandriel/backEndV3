@@ -16,7 +16,7 @@ export class VotoService {
 
   async catalogue(): Promise<ServiceResponseHttpModel> {
     const response = await this.votoRepository.findAndCount({
-      relations: [''],
+      relations: ['lista'],
       take: 1000,
     });
 
@@ -51,7 +51,7 @@ export class VotoService {
 
     //All
     const data = await this.votoRepository.findAndCount({
-      relations: [''],
+      relations: ['lista'],
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };
@@ -59,7 +59,7 @@ export class VotoService {
 
   async findOne(id: string): Promise<any> {
     const voto = await this.votoRepository.findOne({
-      relations: [''],
+      relations: ['lista'],
       where: {
         id,
       },
@@ -120,7 +120,7 @@ export class VotoService {
     }
 
     const response = await this.votoRepository.findAndCount({
-      relations: [''],
+      relations: ['lista'],
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),

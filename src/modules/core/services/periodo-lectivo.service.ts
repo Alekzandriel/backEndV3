@@ -16,7 +16,7 @@ export class PeriodoLectivoService {
 
   async catalogue(): Promise<ServiceResponseHttpModel> {
     const response = await this.periodoLectivoRepository.findAndCount({
-      relations: [''],
+      relations: ['lista','detalleCronograma'],
       take: 1000,
     });
 
@@ -59,7 +59,7 @@ export class PeriodoLectivoService {
 
     //All
     const data = await this.periodoLectivoRepository.findAndCount({
-      relations: [''],
+      relations: ['lista','detalleCronograma'],
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };
@@ -67,7 +67,7 @@ export class PeriodoLectivoService {
 
   async findOne(id: string): Promise<any> {
     const periodoLectivo = await this.periodoLectivoRepository.findOne({
-      relations: [''],
+      relations: ['lista','detalleCronograma'],
       where: {
         id,
       },
@@ -129,7 +129,7 @@ export class PeriodoLectivoService {
     }
 
     const response = await this.periodoLectivoRepository.findAndCount({
-      relations: [''],
+      relations: ['lista','detalleCronograma'],
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),

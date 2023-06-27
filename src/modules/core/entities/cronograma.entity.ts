@@ -48,11 +48,11 @@ export class CronogramaEntity {
       @OneToMany(() => DetalleCronogramaEntity, (detalleCronograma:DetalleCronogramaEntity)=>detalleCronograma.cronograma)
       @JoinColumn({ name: 'iddetallecronograma' })
       cronogramas: DetalleCronogramaEntity;
-
+/*
       @ManyToOne(() => CronogramaEntity)
       @JoinColumn({ name: 'idcronograma' })
       cronograma: CronogramaEntity [];
-
+*/
       @Column('varchar', {
         name: 'periodo_lectivo',
         length: 10,

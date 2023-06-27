@@ -16,7 +16,7 @@ export class CandidatoService {
 
   async catalogue(): Promise<ServiceResponseHttpModel> {
     const response = await this.candidatoRepository.findAndCount({
-      relations: [''],
+      relations: ['candidatosLista'],
       take: 1000,
     });
 
@@ -51,7 +51,7 @@ export class CandidatoService {
 
     //All
     const data = await this.candidatoRepository.findAndCount({
-      relations: [''],
+      relations: ['candidatosLista'],
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };
@@ -59,14 +59,14 @@ export class CandidatoService {
 
   async findOne(id: string): Promise<any> {
     const candidato = await this.candidatoRepository.findOne({
-      relations: [''],
+      relations: ['candidatosLista'],
       where: {
         id,
       },
     });
 
     if (!candidato) {
-      throw new NotFoundException(`El voto con el id:  ${id} no se encontro`);
+      throw new NotFoundException(`El candidato de la lista con el id:  ${id} no se encontro`);
     }
     return { data: candidato };
   }
@@ -77,7 +77,7 @@ export class CandidatoService {
   ): Promise<ServiceResponseHttpModel> {
     const candidato = await this.candidatoRepository.findOneBy({ id });
     if (!candidato) {
-      throw new NotFoundException(`La carrera con id:  ${id} no se encontro`);
+      throw new NotFoundException(`El candidato de la lista con id:  ${id} no se encontro`);
     }
     this.candidatoRepository.merge(candidato, payload);
     const candidatoActualizado = await this.candidatoRepository.save(candidato);
@@ -88,7 +88,7 @@ export class CandidatoService {
     const candidato = await this.candidatoRepository.findOneBy({ id });
 
     if (!candidato) {
-      throw new NotFoundException(`El voto con el :  ${id} no se encontro`);
+      throw new NotFoundException(`El candidato de la lista con el :  ${id} no se encontro`);
     }
 
     const candidatoELiminado = await this.candidatoRepository.softRemove(candidato);
@@ -120,7 +120,7 @@ export class CandidatoService {
     }
 
     const response = await this.candidatoRepository.findAndCount({
-      relations: [''],
+      relations: ['candidatosLista'],
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),

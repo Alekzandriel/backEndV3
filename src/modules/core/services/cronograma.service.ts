@@ -16,7 +16,7 @@ export class CronogramaService {
 
   async catalogue(): Promise<ServiceResponseHttpModel> {
     const response = await this.cronogramaRepository.findAndCount({
-      relations: [''],
+      relations: ['cronogramas'],
       take: 1000,
     });
 
@@ -59,7 +59,7 @@ export class CronogramaService {
 
     //All
     const data = await this.cronogramaRepository.findAndCount({
-      relations: [''],
+      relations: ['cCronograms'],
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };
@@ -67,7 +67,7 @@ export class CronogramaService {
 
   async findOne(id: string): Promise<any> {
     const cronograma = await this.cronogramaRepository.findOne({
-      relations: [''],
+      relations: ['cronogramas'],
       where: {
         id,
       },
@@ -129,7 +129,7 @@ export class CronogramaService {
     }
 
     const response = await this.cronogramaRepository.findAndCount({
-      relations: [''],
+      relations: ['cronogramas'],
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),
